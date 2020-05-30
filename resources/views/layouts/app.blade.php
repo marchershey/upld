@@ -21,7 +21,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
-<body class="d-flex flex-column vh-100 bg-white">
+<body class="bg-white">
     <nav class="navbar navbar-expand-md navbar-light bg-white position-relative">
         <a class="navbar-brand font-weight-bold" href="{{ url('/') }}">
             {{ config('app.name') }}
@@ -74,7 +74,7 @@
 
     <footer class="footer mt-auto py-3 text-center">
         <div class="container">
-            <span class="text-muted">Place sticky footer content here.</span>
+            <span class="text-muted small">Place sticky footer content here.</span>
         </div>
     </footer>
 

@@ -1,0 +1,19 @@
+.upload-div {
+    min-height: calc(100vh - 140px);
+
+    .nav-pills {
+        border-bottom: 2px solid $primary;
+    }
+
+    .nav-link {
+        border-radius: 0;
+    }
+
+    .tab-pane {
+        min-height: 200px;
+    }
+}
+
+.scroll-div {
+    min-height: 80px;
+}
