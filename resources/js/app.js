@@ -1,3 +1,9 @@
+/**
+ * First we will load all of this project's JavaScript dependencies which
+ * includes Vue and other libraries. It is a great starting point when
+ * building robust, powerful web applications using Vue and Laravel.
+ */
+
 window._ = require('lodash');
 
 /**
@@ -7,18 +13,27 @@ window._ = require('lodash');
  */
 
 try {
-    window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery');
-    window.bsCustomFileInput = require('bs-custom-file-input');
+    window.Popper = require('popper.js').default;
 
     require('bootstrap');
+    require('./auth/google.js');
+    require('video.js');
+    window.Dropzone = require('dropzone/dist/dropzone');
+    window.Swal = require('sweetalert2');
+    window.Toast = Swal.mixin({
+        toast: true,
+        position: 'bottom',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        onOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    })
 } catch (e) { }
 
-// Init
-$(function () {
-    $('[data-toggle="tooltip"]').tooltip()
-    bsCustomFileInput.init()
-})
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -46,3 +61,47 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+window.Vue = require('vue');
+
+/**
+ * The following block of code may be used to automatically register your
+ * Vue components. It will recursively scan this directory for the Vue
+ * components and automatically register them with their "basename".
+ *
+ * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
+ */
+
+// const files = require.context('./', true, /\.vue$/i)
+// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+
+Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+
+/**
+ * Next, we will create a fresh Vue application instance and attach it to
+ * the page. Then, you may begin adding components to this application
+ * or customize the JavaScript scaffolding to fit your unique needs.
+ */
+
+const app = new Vue({
+    el: '#app',
+});
+
+
+
+$(function () {
+    var is_touch_device = ("ontouchstart" in window) || window.DocumentTouch && document instanceof DocumentTouch;
+    $('[data-toggle="popover"]').popover({
+        trigger: is_touch_device ? "click" : "hover"
+    });
+    $('[data-toggle="tooltip"]').tooltip();
+
+    // $('.toast').toast('show');
+
+    $(".show-toast").click(function () {
+        $("#myToast").toast({
+            delay: 3000
+        }).toast('show');
+    });
+
+})

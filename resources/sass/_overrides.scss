@@ -1,0 +1,44 @@
+.text-muted {
+    color: #bdbdbd !important;
+}
+
+::-webkit-input-placeholder { /* Edge */
+    color: #bdbdbd !important;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #bdbdbd !important;
+}
+
+::placeholder {
+    color: #bdbdbd !important;
+}
+
+.form-controller::placeholder {
+    color: #bdbdbd !important;
+}
+
+/* SWAL OVERRIDE */
+
+body.swal2-toast-shown .swal2-container.swal2-bottom {
+    width: 100%;
+}
+
+/* DROPZONE OVERRIDE */
+
+.dropzone {
+    border: 2px dashed #989898;
+    border-radius: 5px;
+    background: #343a4008;
+  }
+  
+  .dropzone i{
+    font-size: 5rem;
+  }
+  
+  .dropzone .dz-message {
+      color: #989898;
+      font-weight: 500;
+      font-size: initial;
+      text-transform: uppercase;
+  }

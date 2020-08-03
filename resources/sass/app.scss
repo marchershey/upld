@@ -1,48 +1,25 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
-@import '~@fortawesome/fontawesome-free/css/all';
+@import '~@fortawesome/fontawesome-free/css/all.css';
 
 // Variables
-@import 'variables';
+@import './variables';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-// Index
-@import 'index';
+// Utilities
+@import './util';
 
-.container {
-    max-width: 900px;
-}
+// Social Buttons
+@import './vendor/social-buttons';
 
+// Dropzone
+@import '../../node_modules/dropzone/dist/dropzone.css';
 
-.animated {
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-  -webkit-animation-timing-function: linear;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  -webkit-animation-iteration-count: infinite;
-}
-@-webkit-keyframes bounce {
-  0%, 100% {
-    -webkit-transform: translateY(0);
-  }
-  50% {
-    -webkit-transform: translateY(-10px);
-  }
-}
-@keyframes bounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-.bounce {
-  -webkit-animation-name: bounce;
-  animation-name: bounce;
-}
+// Video Player
+@import 'https://unpkg.com/video.js@7/dist/video-js.min.css';
+@import './player';
+
+// Overrides
+@import './overrides';

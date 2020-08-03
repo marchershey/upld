@@ -2,76 +2,67 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+    <div class="d-flex justify-content-center align-items-center full-height">
+        <div>
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
-
                 <div class="card-body">
+                    <div class="h4 text-center">Create an account</div>
+                    <hr>
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                        @if(count($errors) > 1)
+                        <div class="alert alert-danger small text-center" role="alert">
+                            {{ $errors->first() }}
                         </div>
+                        @endif
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                        <div class="form-group">
+                            <div class="form-row mb-3">
+                                <input type="text" class="form-control text-center" id="email" name="email" placeholder="Email Address">
                             </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                            <div class="form-row mb-3">
+                                <input type="text" class="form-control text-center" id="password" name="password" placeholder="Password">
                             </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            <div class="form-row">
+                                <button type="submit" class="btn btn-block btn-primary">Create Account</button>
                             </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
+                            <hr class="hr-text" data-content="or use a social account">
+                            <div id="my-signin2"></div>
                         </div>
                     </form>
+                    <hr>
                 </div>
             </div>
+            <div class="small text-muted text-center mt-3">Go back to <a href="{{route('login')}}">sign in</a></div>
         </div>
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+    function googleSuccess(googleUser) {
+        console.log(googleUser.getBasicProfile());
+    }
+    function googleFailure(error) {
+        console.log(error);
+    }
+    function googleRenderButton() {
+        gapi.signin2.render('my-signin2', {
+            'scope': 'profile email',
+            'width': 240,
+            'height': 50,
+            'longtitle': true,
+            'setText': 'test',
+            'theme': 'dark',
+            'ux_mode': 'popup',
+            'redirect_uri': '{{ env("GOOGLE_REDIRECT_URL") }}',
+            'onsuccess': googleFailure,
+            'onfailure': googleFailure,
+        });
+    }
+</script>
+<script src="https://apis.google.com/js/platform.js?onload=googleRenderButton" async defer>
+</script>
+@endpush
