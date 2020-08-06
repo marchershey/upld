@@ -123,3 +123,7 @@ $slider-bg-color: lighten($primary-background-color, 33%);
   background: rgba($slider-bg-color, 0.75);
 }
 
+.ui-slider .ui-slider-range {
+  border: 1px solid #003eef;
+  background: #007fff;
+}

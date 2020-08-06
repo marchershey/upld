@@ -14,24 +14,36 @@ window._ = require('lodash');
 
 try {
     window.$ = window.jQuery = require('jquery');
+    window.slider = require('jquery-ui/ui/widgets/slider');
     window.Popper = require('popper.js').default;
+    window.moment = require('moment');
+    require('moment-duration-format');
 
     require('bootstrap');
     require('./auth/google.js');
-    require('video.js');
-    window.Dropzone = require('dropzone/dist/dropzone');
-    window.Swal = require('sweetalert2');
-    window.Toast = Swal.mixin({
-        toast: true,
-        position: 'bottom',
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        onOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-    })
+    window.videojs = require('video.js/dist/video');
+    require('videojs-offset');
+    require('./videojs-controls.js');
+
+    window.Uppy = require('@uppy/core');
+    window.FileInput = require('@uppy/file-input');
+    window.ProgressBar = require('@uppy/progress-bar');
+    window.XHRUpload = require('@uppy/xhr-upload')
+
+    // window.Dropzone = require('dropzone/dist/dropzone');
+    // require('dropzone');
+    // window.Swal = require('sweetalert2');
+    // window.Toast = Swal.mixin({
+    //     toast: true,
+    //     position: 'bottom',
+    //     showConfirmButton: false,
+    //     timer: 3000,
+    //     timerProgressBar: true,
+    //     onOpen: (toast) => {
+    //         toast.addEventListener('mouseenter', Swal.stopTimer)
+    //         toast.addEventListener('mouseleave', Swal.resumeTimer)
+    //     }
+    // })
 } catch (e) { }
 
 
@@ -62,46 +74,20 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     forceTLS: true
 // });
 
-window.Vue = require('vue');
 
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
+// $(function () {
+//     var is_touch_device = ("ontouchstart" in window) || window.DocumentTouch && document instanceof DocumentTouch;
+//     $('[data-toggle="popover"]').popover({
+//         trigger: is_touch_device ? "click" : "hover"
+//     });
+//     $('[data-toggle="tooltip"]').tooltip();
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+//     // $('.toast').toast('show');
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+//     $(".show-toast").click(function () {
+//         $("#myToast").toast({
+//             delay: 3000
+//         }).toast('show');
+//     });
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-const app = new Vue({
-    el: '#app',
-});
-
-
-
-$(function () {
-    var is_touch_device = ("ontouchstart" in window) || window.DocumentTouch && document instanceof DocumentTouch;
-    $('[data-toggle="popover"]').popover({
-        trigger: is_touch_device ? "click" : "hover"
-    });
-    $('[data-toggle="tooltip"]').tooltip();
-
-    // $('.toast').toast('show');
-
-    $(".show-toast").click(function () {
-        $("#myToast").toast({
-            delay: 3000
-        }).toast('show');
-    });
-
-})
+// })

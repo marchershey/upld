@@ -2,6 +2,9 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 @import '~@fortawesome/fontawesome-free/css/all.css';
 
+// jQuery UI
+@import '../../node_modules/jquery-ui/themes/base/all.css';
+
 // Variables
 @import './variables';
 
@@ -14,12 +17,16 @@
 // Social Buttons
 @import './vendor/social-buttons';
 
-// Dropzone
-@import '../../node_modules/dropzone/dist/dropzone.css';
+// Uppy
+@import '../../node_modules/@uppy/core/dist/style.min.css';
+@import '../../node_modules/@uppy/file-input/dist/style.min.css';
+@import '../../node_modules/@uppy/progress-bar/dist/style.min.css';
 
 // Video Player
 @import 'https://unpkg.com/video.js@7/dist/video-js.min.css';
+@import 'https://unpkg.com/@videojs/themes@1/dist/city/index.css';
 @import './player';
+@import './videojs-clip';
 
 // Overrides
 @import './overrides';
